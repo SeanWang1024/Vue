@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on绑定事件</title>
+</head>
+<body>
+<div id="app">
+    <div v-on:click="sayHello">
+        sayHello
+    </div>
+    <div v-on:click="sayWorld('YOU',$event)">
+        sayWorld
+    </div>
+</div>
+
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            hello:'hi',
+            world:'sean'
+        },
+        methods:{
+            sayHello:function (e) {
+                console.log(e);//没有参数的时候会传递事件源
+                alert(this.hello)
+            },
+            sayWorld:function (who,e) {
+                console.log(e);//有参数的时候需要手动传递
+                alert(who+'爱'+this.world)
+            }
+        }
+    })
+</script>
+</body>
+</html>

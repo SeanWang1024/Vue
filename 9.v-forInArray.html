@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+</head>
+<body>
+<div id="app">
+    <ul v-for = 'mess in message'>
+        <li>{{$index}} &nbsp;{{mess.name}}:{{mess.price}}</li>
+    </ul>
+    <hr/>    <!-- 用hr/标签画一个横线 -->
+    常用写法如下：看代码
+    <ul v-for = '(key,mess) in message'>
+        <li>{{key}}&nbsp;{{$index}} &nbsp;{{mess.name}}:{{mess.price}}</li>
+    </ul>
+    <hr/>
+    <ul v-for = 'phone in phones' track-by="$index">
+        <!--不写track-by会提示错误[Vue warn]: Duplicate value found in v-for="phone in phones": "苹果". Use track-by="$index" if you are expecting duplicate values. 如果用压缩mini版的Vue.mini.js错误都不会提示-->
+        <li>{{$index}} &nbsp;{{phone}}</li>
+        <!--如果没有唯一的键供追踪 尽量使用track-by-->
+    </ul>
+    <hr/>
+    双级遍历
+    <div v-for="(key,me) in message2">
+        {{key}}
+        <div v-for="t in me.type">
+            &nbsp;&nbsp;{{$index}}&nbsp;{{t}}
+        </div>
+
+    </div>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:[
+                {name:'iPhone',price:4467},
+                {name:'smartion',price:2480},
+                {name:'Nokia',price:299}
+            ],
+            phones:['苹果','苹果','苹果','苹果','苹果','苹果'],
+            message2:[
+                {name:'iPhone',price:4467,type:['white','red']},
+                {name:'smartion',price:2480,type:['pink','red']},
+                {name:'Nokia',price:299,type:['black','yellow']}
+            ]
+        }
+    });
+</script>
+</body>
+</html>

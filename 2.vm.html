@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例</title>
+</head>
+<body>
+<div class="app">
+    {{message.name}}
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var mess = {
+        name: 'sean'
+    };
+    var vm = new Vue({
+        el: ".app",
+        data: {
+            //可以挂载对象
+            message: mess
+        }
+    });
+    //当前实例vm和mess对象现在指向的是同一内存空间
+    vm.message.name = 'zhangsan';
+    vm.message.age = 18;
+    //在实例创建后挂载以前不存在的属性是不会刷新视图的
+//    vm.$set() Vue.set  可以给对象增加属性
+    alert(vm.message == mess); //true
+
+
+
+
+
+
+</script>
+</body>
+</html>

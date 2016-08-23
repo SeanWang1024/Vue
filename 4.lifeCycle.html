@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        data:{
+            message:'sean'
+        },
+        created:function(){
+            console.log('创建created');
+        },
+        beforeCompile:function(){
+            alert('编译前beforeCompile');
+        },
+        compiled:function(){
+          alert("编译完成compiled");
+        },
+        ready:function(){
+            alert('准备好了ready');
+        },
+        beforeDestroy:function(){
+            alert('销毁前beforeDestroy');
+        },
+        destroyed:function(){
+            alert('销毁destroyed');
+        }
+
+    });
+//    手动挂载app
+    vm.$mount('#app');
+//    调用销毁
+    vm.$destroy();
+</script>
+</body>
+</html>

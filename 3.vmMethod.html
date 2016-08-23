@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例</title>
+</head>
+<body>
+<div class="app">
+    <!--{{message.name}}-->
+    <!--{{sex}}-->
+    {{message}}
+    <input type="text" v-model="message">
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el: ".app",
+        data: {
+            //可以挂载对象
+//            sex:'boy'
+            message:'sean'
+        }
+    });
+
+    //不能更改绑定的元素
+    vm.$el = document.getElementById('app');
+    //可以直接更改对象指定
+//    vm.$data = {sex:'female'};
+    //
+    vm.$watch('message',function (newVal, oldVal) {
+        console.log(newVal,oldVal);
+    })
+
+
+
+
+
+</script>
+</body>
+</html>

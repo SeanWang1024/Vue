@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解决闪烁问题</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <!--angularJS解决单个标签内的闪烁问题用ng-band-->
+    <!--还有用ng-cloak解决多级闪烁问题-->
+
+    <!--<div v-text = 'message'></div>-->
+    <!-- 增加css样式 设置需要防止闪烁的dom元素上，在数据绑定后移除v-cloak属性-->
+    <div v-cloak>
+        {{message}}
+    </div>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'sean'
+        }
+    });
+</script>
+</body>
+</html>

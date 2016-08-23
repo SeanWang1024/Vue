@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性的计算</title>
+</head>
+<body>
+<div id="app">
+    {{message}}<br>
+    {{sum}}
+    <input type="text" v-model="count">
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    //vm 相当于 $scope MVVM model view viewModel
+    var vm = new Vue({
+        data:{
+            message:'hello',
+            count:20,
+            price:100
+        },
+        computed:{
+            /*sum:function () {//默认的方法是获取
+                //vm中所有的this指向的都是当前的实例
+                return this.count*this.price;
+            }*/
+            sum:{
+                get:function () {
+                    return this.count*this.price;
+                },
+                set:function (val) {
+                    this.price = val;
+                }
+            }
+        }
+    });
+    vm.sum = 111; //默认调用的是set方法
+    vm.$mount('#app');
+</script>
+</body>
+</html>

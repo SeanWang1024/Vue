@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+</head>
+<body>
+<div id="app">
+    <!--不符合直接删掉dom元素-->
+   <!-- <div v-if="true">
+        <div>hello</div>
+        <div>sean</div>
+    </div>-->
+    <!--解决上面的空标签问题用 template标签是不会被渲染的-->
+    <template v-if="true">
+        <div>hello</div>
+        <div>sean</div>
+    </template>
+    <div v-else>
+        若上面的v-if成立就不会被渲染
+        若上面的v-if不成立则渲染v-else
+        v-else也紧跟v-if或者v-show
+        template上不支持v-show
+    </div>
+    <!--更高的初始渲染消耗-->
+   <!-- <div v-show="false">
+        hello
+    </div>-->
+</div>
+
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'sean'
+        }
+    });
+//    v-if与v-show的区别
+//    v-show 相当于angular的ng-show 操作的是样式
+//    v-if   相当于angular的ng-if   操作的是DOM
+//不停得切换 显示与隐藏的时候用v-show 只在刚开始的时候确定显示还是隐藏用v-if
+</script>
+</body>
+</html>

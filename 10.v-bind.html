@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind绑定动态数据</title>
+</head>
+<body>
+<div id="app">
+    <!--angularJS用的是ng-src和ng-href -->
+    <img v-bind:src="src" alt="VUE的官网">
+    <a v-bind:href="href">官网</a>
+    <!--使用冒号的方式来进行简写，不要使用{{src}}设置链接 -->
+    <img src="{{src}}" alt="">
+    <!--使用{{src}}方式设置链接 能显示 但是会报错，会有一次404请求报错-->
+    <!--Failed to load resource: the server responded with a status of 404 (Not Found) http://localhost:63342/untitled/vue%20test/day0823/%7B%7Bsrc%7D%7D
+[Vue warn]: src="{{src}}": interpolation in "src" attribute will cause a 404 request. Use v-bind:src instead. -->
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+
+    //vm 相当于 $scope MVVM model view viewModel
+    var vm = new Vue({
+        el:'#app',//可以类、id  表示选取数据所作用的范围  本质是用querySelector 能拿到的div都可以用
+        data:{
+            src:'http://vuejs.org/images/logo.png',
+            href:'http://vuejs.org'
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+</head>
+<body>
+<div id="app">
+    <!--在angularJS中用ng-repeat来遍历-->
+    <template v-for = '(key,m) in message'>
+        {{m}}<br>
+        {{$index}}&nbsp;{{key}}:{{$key}}:{{m}} <br>
+        <!--$index表示当前第几个 angular中还有（$first $odd $even $last）-->
+    </template>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:{
+                name:'sean',
+                age:19
+            }
+        }
+    });
+</script>
+</body>
+</html>
