@@ -2,9 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>实例 图书管理</title>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
+<div id="app">
+    <div class="container">
+        <table class="table table-bordered">
+            <tr>
+                <td>书名</td>
+                <td>价格</td>
+                <td>数量</td>
+                <td>小计</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="book in books">
+                <td >{{book.name}}</td>
+                <td>{{book.price}}</td>
+                <td>
+                    <input type="text" v-model="book.count">
+                </td>
+                <td>{{book.price*book.count}}</td>
+                <td><button class="btn btn-danger" v-on:click="remove(book)">删除</button></td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    总价格
+                </td>
+                <td colspan="4">
+                    {{total}}
+                </td>
+            </tr>
 
+        </table>
+        <div class="form-group">
+            <label for="bookname" class="control-label">书名</label>
+            <input type="text" v-model="list.name" id="bookname" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="bookprice" class="control-label">价格</label>
+            <input type="text" v-model="list.price" id="bookprice" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="bookcount" class="control-label">数量</label>
+            <input type="text" v-model="list.count" id="bookcount" class="form-control">
+        </div>
+        <button class="btn btn-primary" v-on:click="add">添加</button>
+
+</div>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    var books = [
+        {name:'nodeJs',price:30,count:1},
+        {name:'angularJs',price:60,count:2},
+        {name:'vueJs',price:40,count:2}
+    ];
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            books:books,
+            list:{name:'',price:'',count:''}
+        },
+        computed:{
+            total:function(){
+                var sum =0;
+                this.books.forEach(function (a) {
+                    sum += a.price * a.count;
+                });
+                return sum;
+            }
+        },
+        method:{
+            add:function () {
+                this.books.push(this.list);
+                this.list = {name:'',price:'',count:''}
+
+            },
+            remove:function (book) {
+                this.books.$remove(book)
+            }
+        }
+    })
+</script>
 </body>
 </html>
