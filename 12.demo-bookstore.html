@@ -57,6 +57,7 @@
 
 <script src="../node_modules/vue/dist/vue.js"></script>
 <script>
+    //这个数据可以从数据库中提取
     var books = [
         {name:'nodeJs',price:30,count:1},
         {name:'angularJs',price:60,count:2},
@@ -78,14 +79,13 @@
                 return sum;
             }
         },
-        method:{
+        methods:{
             add:function () {
                 this.books.push(this.list);
-                this.list = {name:'',price:'',count:''}
-
+                this.list = {name:'',price:'',count:''};//添加完成后进行清空
             },
             remove:function (book) {
-                this.books.$remove(book)
+                this.books.$remove(book);
             }
         }
     })
